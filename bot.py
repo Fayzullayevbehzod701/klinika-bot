@@ -2,6 +2,42 @@ import telebot
 from telebot import types
 import sqlite3
 from datetime import datetime, timedelta
+import os
+import threading
+from flask import Flask
+
+# Flask server - Render port talab qiladi
+app = Flask(__name__)
+
+
+@app.route('/')
+def index():
+    return "Bot ishlayapti!"
+
+
+@app.route('/health')
+def health():
+    return "OK"
+
+
+# Botni alohida threadda ishga tushirish
+def run_bot():
+    bot.infinity_polling()
+
+
+if __name__ == "__main__":
+    print("=" * 50)
+    print("🤖 TOSHKENT TIBBIYOT BOTI")
+    print("=" * 50)
+    print("✅ Bot ishga tushmoqda...")
+    print("=" * 50)
+
+    # Botni threadda ishga tushirish
+    threading.Thread(target=run_bot, daemon=True).start()
+
+    # Flask serverni ishga tushirish
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
 
 # TOKEN - o'zingizning tokeningizni qo'ying
 TOKEN = '8688973963:AAG5HU8YeACMfiKKYy6_MbdCAHAvniBjFaQ'  # O'ZINGIZNING TOKENINGIZ
