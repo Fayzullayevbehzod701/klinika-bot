@@ -25,12 +25,7 @@ def run_bot():
     bot.infinity_polling()
 
 
-if __name__ == "__main__":
-    print("=" * 50)
-    print("🤖 TOSHKENT TIBBIYOT BOTI")
-    print("=" * 50)
-    print("✅ Bot ishga tushmoqda...")
-    print("=" * 50)
+
 
     # Botni threadda ishga tushirish
     threading.Thread(target=run_bot, daemon=True).start()
@@ -1849,6 +1844,7 @@ def bot_haqida(message):
         "👨‍💻 **Dasturchi:** @b_2406",
         parse_mode='Markdown'
     )
+
 # Botni ishga tushirish
 if __name__ == "__main__":
     print("=" * 50)
@@ -1857,9 +1853,9 @@ if __name__ == "__main__":
     print("✅ Bot ishga tushmoqda...")
     print("=" * 50)
 
-    try:
-        bot.infinity_polling(timeout=60, long_polling_timeout=60)
-    except Exception as e:
-        print(f"❌ Xatolik: {e}")
-        print("🔄 Bot qayta ishga tushirilmoqda...")
-        bot.infinity_polling(timeout=60, long_polling_timeout=60)
+    # Botni threadda ishga tushirish
+    threading.Thread(target=run_bot, daemon=True).start()
+
+    # Flask serverni ishga tushirish
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
