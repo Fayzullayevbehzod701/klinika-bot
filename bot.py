@@ -1845,6 +1845,7 @@ def bot_haqida(message):
         parse_mode='Markdown'
     )
 
+
 # Botni ishga tushirish
 if __name__ == "__main__":
     print("=" * 50)
@@ -1853,7 +1854,10 @@ if __name__ == "__main__":
     print("✅ Bot ishga tushmoqda...")
     print("=" * 50)
 
-    # Botni threadda ishga tushirish
+    # Botni alohida threadda ishga tushirish
+    def run_bot():
+        bot.infinity_polling()
+
     threading.Thread(target=run_bot, daemon=True).start()
 
     # Flask serverni ishga tushirish
